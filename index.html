@@ -31,36 +31,47 @@
 
         <div class="row form1">
 
-            <h1 id="enter-bday">Enter Your Birthday</h1>
+            <h1 id="headline">Search For Jobs In Your Area</h1>
 
         </div>
-        <!-- /.birthday title -->
+        <!-- /.headline -->
+
+        <!-- incomplete form -->
+        <h5 id="alert"></h5>
 
         <div class="row form1">
             <form class="col s12">
+                
+                <!-- name -->
                 <div class="row">
-                    <div class="input-field col s12">
-                        <input id="firstname" type="text" class="validate">
-                        <label for="firstname">First Name</label>
+                    <!-- first name -->
+                    <div class="input-field col s6">
+                        <input id="first-name" type="text" class="validate">
+                        <label for="first-name">First Name</label>
                     </div>
-                    <!-- <div class="input-field col s6">
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">Last Name</label>
-                    </div> -->
+                    <!-- last name -->
+                    <div class="input-field col s6">
+                        <input id="last-name" type="text" class="validate">
+                        <label for="last-name">Last Name</label>
+                    </div>
+
                 </div>
 
+                <!-- location -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="birthday" type="date" class="validate">
-                        <!-- <label for="birthday">Birthday</label> -->
+                        <input id="location" type="text" class="validate">
+                        <label for="location">Location</label>
                     </div>
                 </div>
-                <!-- <div class="row">
+
+                <!-- job  -->
+                <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" type="email" class="validate">
-                        <label for="email">Email</label>
+                        <input id="job" type="text" class="validate">
+                        <label for="job">Job Description</label>
                     </div>
-                </div> -->
+                </div>
 
                 <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
 
@@ -68,18 +79,17 @@
         </div>
         <!-- /.form -->
 
-        <div id="print-name">
+        <div id="print-name"></div>
+        <!-- /.2nd headline -->
 
-        </div>
+        <div id="gif"></div>
+        <!-- /.steve jobs gif -->
 
-        <div id="news"></div>
-        <!-- /.news articles -->
+        <div id="jobs"></div>
+        <!-- /.job list -->
 
-        <div id="launches"></div>
-        <!-- /.launch info -->
-
-        <div id="apod"></div>
-        <!-- /.astronomy photo of the day -->
+        <div id="weather"></div>
+        <!-- /.weather -->
 
     </div>
     <!-- /.container -->
