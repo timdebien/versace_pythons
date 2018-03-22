@@ -44,6 +44,9 @@ $('document').ready(function () {
 
             // hide form
             $('.form1').hide();
+            
+            // hide alert
+            $('#alert').hide();
 
             // add text
             $('#print-name').html('<h1>' + 'Hi ' + firstname + ', here are some perfect jobs for you!' + '</h1>').css('border-bottom', '2px solid #26a69a').addClass('animated slideInUp');
