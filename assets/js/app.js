@@ -96,8 +96,43 @@ $('document').ready(function () {
 
                 });
 
+        
+
+            // jobs api url
+            var queryURL = "https://jobs.github.com/positions.json?description=" + job + "&location=" + inputLocation
+            //query that acts as if our site has a actual url not delployed on git hub.
+            jQuery.ajaxPrefilter(function(options) {
+                if (options.crossDomain && jQuery.support.cors) {
+                    options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+                }
+            });
+            // call api
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+            // creating a function  companies infor
+                .then(function (companies) {
+                    for (var i = 0; i < companies.length; i++) {
+                        console.log('-------------------')
+                        var companyName = $('<div data-company="' + companies[i].company + '">' + companies[i].company + '</div>').addClass('job animated slideInUp');
+                        $('#jobs').append(companyName);
+                        var titleName = $('<div data-title="' + companies[i].title + '">' + companies[i].title + '</div>').addClass('job animated slideInUp');
+                        $('#jobs').append(titleName);
+
+                        var descriptionName = $('<div></div>').addClass('job animated slideInUp');
+                        var parsed = $.parseHTML(companies[i].description);
+
+                        descriptionName.append(...parsed);
+                        descriptionName.data('description', companies[i].description);
+                        $('#jobs').append(descriptionName);
+                    }
+
+                });
+                // then function
         }
-
+        // else if
     });
-
+    // on click
 });
+// document
