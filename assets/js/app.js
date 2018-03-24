@@ -87,10 +87,10 @@ $('document').ready(function () {
                     var weatherIcon = response.current_observation.icon_url;
 
                     // show weather html
-                    $('weather').addClass('animated slideInUp');
-                    $('#weather').html('<img id="weather-icon" src="' + weatherIcon + '" alt="weather icon">');
-                    $('#weather').append('<h4>Current Temp:</h4>');                    
-                    $('#weather').append('<h3 id="temp">' + temp + '</h3>');
+                    // $('#weather').
+                    $('#weather').html('<img id="weather-icon" src="' + weatherIcon + '" alt="weather icon">').css('margin', '0px').addClass('animated slideInUp');
+                    $('#weather').append('<h4>Current Temp:</h4>').css('margin', '0px').addClass('animated slideInUp');                    
+                    $('#weather').append('<h3 id="temp">' + temp + '</h3>').css('margin', '0px').addClass('animated slideInUp');
                     
 
 
