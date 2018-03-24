@@ -1,5 +1,5 @@
 $('document').ready(function () {
-
+// this is a test to merge Jonathan's branch
     $('.btn').on('click', function () {
         event.preventDefault();
 
