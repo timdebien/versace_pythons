@@ -40,28 +40,52 @@ $('document').ready(function () {
             $('#job').addClass('animated wobble');
             $('#alert').text('*Must Enter Job Description')
         }
-        else if (firstname !== '' && lastname !== '' && inputLocation !== '' && job !== ''){
+        else if (firstname !== '' && lastname !== '' && inputLocation !== '' && job !== '') {
 
             // hide form
             $('.form1').hide();
 
             // add text
             $('#print-name').html('<h1>' + 'Hi ' + firstname + ', here are some perfect jobs for you!' + '</h1>').css('border-bottom', '2px solid #26a69a').addClass('animated slideInUp');
-        
+
             // add gif
             $('#gif').html('<img src=https://media.giphy.com/media/CTkWFZ1IDvsfS/giphy.gif>').addClass('animated slideInUp');
-            
-        
+
+            // jobs api url
+            var queryURL = "https://jobs.github.com/positions.json?description=" + job + "&location=" + inputLocation
+            //query that acts as if our site has a actual url not delployed on git hub.
+            jQuery.ajaxPrefilter(function(options) {
+                if (options.crossDomain && jQuery.support.cors) {
+                    options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+                }
+            });
+            // call api
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+            // creating a function  companies infor
+                .then(function (companies) {
+                    for (var i = 0; i < companies.length; i++) {
+                        console.log('-------------------')
+                        var companyName = $('<div data-company="' + companies[i].company + '">' + companies[i].company + '</div>').addClass('job animated slideInUp');
+                        $('#jobs').append(companyName);
+                        var titleName = $('<div data-title="' + companies[i].title + '">' + companies[i].title + '</div>').addClass('job animated slideInUp');
+                        $('#jobs').append(titleName);
+
+                        var descriptionName = $('<div></div>').addClass('job animated slideInUp');
+                        var parsed = $.parseHTML(companies[i].description);
+
+                        descriptionName.append(...parsed);
+                        descriptionName.data('description', companies[i].description);
+                        $('#jobs').append(descriptionName);
+                    }
+
+                });
+                // then function
         }
-
+        // else if
     });
-
-    // var url = "https://api.nasa.gov/planetary/apod?api_key=TiviFiWBJyWVjtnQHT97G8Eg0q8ZaKRm0hOqDpk2";
-
-    // $.ajax({
-    //     url: url,
-    //     method: 'GET'
-    // }).then(function (response) {
-    //     console.log(response);
-    // });
+    // on click
 });
+// document
