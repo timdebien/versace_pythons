@@ -15,7 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script type="text/javascript" src="assets/js/app.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <title>Happy Birthday</title>
+    <title>Steve's Jobs</title>
 </head>
 <!--/-->
 
@@ -42,7 +42,7 @@
 
         <div class="row form1">
             <form class="col s12">
-                
+
                 <!-- name -->
                 <div class="row">
                     <!-- first name -->
@@ -58,11 +58,19 @@
 
                 </div>
 
-                <!-- location -->
+                <!-- city -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="location" type="text" class="validate">
-                        <label for="location">Location</label>
+                        <input id="city" type="text" class="validate">
+                        <label for="city">City</label>
+                    </div>
+                </div>
+
+                <!-- state -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="state" type="text" class="validate">
+                        <label for="state">State (ex. NY)</label>
                     </div>
                 </div>
 
@@ -83,14 +91,18 @@
         <div id="print-name"></div>
         <!-- /.2nd headline -->
 
-        <div id="gif"></div>
-        <!-- /.steve jobs gif -->
+        <div class="row">
+            
+            <div id="gif" class="col s6 m6 l6"></div>
+            <!-- /.steve jobs gif -->
+            
+            <div id="weather" class="col s6 m6 l6"></div>
+            <!-- /.weather -->
+        
+        </div>
 
         <div id="jobs"></div>
         <!-- /.job list -->
-
-        <div id="weather"></div>
-        <!-- /.weather -->
 
     </div>
     <!-- /.container -->
