@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+    
+    <!-- <link rel="icon" href="assets/images/ms-icon-310x310.png" type="image/x-icon"/>
+    <link rel="shortcut icon" href="assets/images/ms-icon-310x310.png" type="image/x-icon"/> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <title>Steve's Jobs</title>
+</head>
+<!--/-->
+
+<body>
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo center">Versace Pythons</a>
+        </div>
+    </nav>
+    <!-- /.nav -->
+
+    <div class="container animated slideInUp">
+
+        <div class="row form1">
+
+            <h1 id="headline">Search For Jobs In Your Area</h1>
+
+        </div>
+        <!-- /.headline -->
+
+        <!-- incomplete form -->
+        <h5 id="alert"></h5>
+
+        <div class="row form1">
+            <form class="col s12">
+
+                <!-- name -->
+                <div class="row">
+                    <!-- first name -->
+                    <div class="input-field col s6">
+                        <input id="first-name" type="text" class="validate">
+                        <label for="first-name">First Name</label>
+                    </div>
+                    <!-- last name -->
+                    <div class="input-field col s6">
+                        <input id="last-name" type="text" class="validate">
+                        <label for="last-name">Last Name</label>
+                    </div>
+
+                </div>
+
+                <!-- city -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="city" type="text" class="validate">
+                        <label for="city">City</label>
+                    </div>
+                </div>
+
+                <!-- state -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="state" type="text" class="validate">
+                        <label for="state">State (ex. NY)</label>
+                    </div>
+                </div>
+
+                <!-- job  -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="job" type="text" class="validate">
+                        <label for="job">Job Description</label>
+                    </div>
+                </div>
+
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+
+            </form>
+        </div>
+        <!-- /.form -->
+
+        <div id="print-name"></div>
+        <!-- /.2nd headline -->
+
+        <div class="row">
+            
+            <div id="gif" class="col s6 m6 l6"></div>
+            <!-- /.steve jobs gif -->
+            
+            <div id="weather" class="col s6 m6 l6"></div>
+            <!-- /.weather -->
+        
+        </div>
+
+        <div id="jobs"></div>
+        <!-- /.job list -->
+
+    </div>
+    <!-- /.container -->
+
+</body>
+
+</html>
+<!-- /. -->

@@ -1,0 +1,19 @@
+nav {
+    background-color: black;
+}
+
+#alert {
+    color: red
+}
+.job {
+    border: 1px solid grey;
+    padding: 10px;
+    margin: 10px;
+}
+
+#weather {
+    border: 1px solid grey;
+    border-radius: 6px;
+    margin-top: 30px;
+    margin-left: -10px;
+}
