@@ -1,5 +1,19 @@
 $('document').ready(function () {
 
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAzmF8RKbpbRSE0wsHFNuq74EqmMdh6kRs",
+        authDomain: "jobs-bd0a1.firebaseapp.com",
+        databaseURL: "https://jobs-bd0a1.firebaseio.com",
+        projectId: "jobs-bd0a1",
+        storageBucket: "jobs-bd0a1.appspot.com",
+        messagingSenderId: "445815274284"
+    };
+    firebase.initializeApp(config);
+
+    // set database variable
+    var database = firebase.database();
+
     $('.btn').on('click', function () {
         event.preventDefault();
 
@@ -18,6 +32,10 @@ $('document').ready(function () {
         // store state in variable
         var state = $('#state').val();
         console.log(state);
+
+        // store array of states in variable
+        var stateList = ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "GU", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MH", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "PR", "PW", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VI", "VT", "WA", "WI", "WV", "WY"];
+        console.log(stateList);
 
         // store job in variable
         var job = $('#job').val();
@@ -44,6 +62,11 @@ $('document').ready(function () {
             $('#state').addClass('animated wobble');
             $('#alert').text('*Must Enter State');
         }
+        else if (stateList.indexOf(state) == -1) {
+            // must enter legit state
+            $('#state').addClass('animated wobble');
+            $('#alert').text('*Must Enter Legitimate State Abbreviation');
+        }
         else if (job === '') {
             // must enter job
             $('#job').addClass('animated wobble');
@@ -58,17 +81,27 @@ $('document').ready(function () {
             $('#alert').hide();
 
             // add text
-            $('#print-name').html('<h1>' + 'Hi ' + firstname + ', here are some perfect jobs for you!' + '</h1>').css('border-bottom', '2px solid #26a69a').addClass('animated slideInUp');
+            $('#print-name').html('<h1>' + 'Hi ' + firstname + ', here are some perfect jobs for you! (and the weather)' + '</h1>').css('border-bottom', '2px solid rgb(38, 166, 154)').addClass('animated slideInUp');
 
             // add gif
             $('#gif').html('<img src=https://media.giphy.com/media/CTkWFZ1IDvsfS/giphy.gif>').addClass('animated slideInUp');
-            
+
+            // push input values to firebase
+            database.ref().push({
+
+                savedName: firstname,
+                savedCity: city,
+                savedState: state,
+                savedJob: job
+
+            });
+
             // This is our API key
             var APIKey = "4679cf55751d13b3";
 
             // Here we are building the URL we need to query the database
             var queryURL = "http://api.wunderground.com/api/" + APIKey + "/conditions/q/" + state + "/" + city + ".json"
-            
+
             // Here we run our AJAX call to the OpenWeatherMap API
             $.ajax({
                 url: queryURL,
@@ -80,28 +113,38 @@ $('document').ready(function () {
                     // log api data
                     console.log(response);
 
-                    // store local temp
-                    var temp = response.current_observation.feelslike_string;
+                    // store local weather
+                    var weather = response.current_observation.weather;
 
                     // store weather icon
                     var weatherIcon = response.current_observation.icon_url;
 
+                    // store local temp
+                    var temp = response.current_observation.feelslike_string;
+
+                    // store humidity
+                    var humidity = response.current_observation.relative_humidity;
+
                     // show weather html
-                    // $('#weather').
-                    $('#weather').html('<img id="weather-icon" src="' + weatherIcon + '" alt="weather icon">').css('margin', '0px').addClass('animated slideInUp');
-                    $('#weather').append('<h4>Current Temp:</h4>').css('margin', '0px').addClass('animated slideInUp');                    
-                    $('#weather').append('<h3 id="temp">' + temp + '</h3>').css('margin', '0px').addClass('animated slideInUp');
-                    
+                    $('#weather').html('<h5>Weather in ' + city + '</h5>');
+                    $('#weather').css('border', '3px solid rgb(38, 166, 154)');
+                    $('#weather').append('<h3>' + weather + '</h3>').addClass('weather animated slideInUp');
+                    $('#weather').append('<img src="' + weatherIcon + '" alt="weather icon">').addClass('weather animated slideInUp');
+                    $('#weather').append('<h4>Current Temp:</h4>').addClass('weather animated slideInUp');
+                    $('#weather').append('<h3>' + temp + '</h3>').addClass('weather animated slideInUp');
+                    $('#weather').append('<h4>Humidity:</h4>').addClass('weather animated slideInUp');
+                    $('#weather').append('<h3>' + humidity + '</h3>').addClass('weather animated slideInUp');
+
 
 
                 });
+            // weather api.
 
-        
 
             // jobs api url
-            var queryURL = "https://jobs.github.com/positions.json?description=" + job + "&location=" + inputLocation
+            var queryURL = "https://jobs.github.com/positions.json?description=" + job + "&location=" + city + ', ' + state;
             //query that acts as if our site has a actual url not delployed on git hub.
-            jQuery.ajaxPrefilter(function(options) {
+            jQuery.ajaxPrefilter(function (options) {
                 if (options.crossDomain && jQuery.support.cors) {
                     options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
                 }
@@ -111,28 +154,35 @@ $('document').ready(function () {
                 url: queryURL,
                 method: "GET"
             })
-            // creating a function  companies infor
+                // creating a function  companies infor
                 .then(function (companies) {
+                    console.log(companies);
+
+                    // create jobs header
+                    $('#jobs-title').addClass('animated slideInUp').append('<h2 style="margin: 9px;">Available Jobs</h2>').css({ 'background-color': 'rgba(53, 192, 178, 0.742)', 'border': '1px solid gainsboro' });
+                    $('#jobs-title').append('<p style="font-size: 21px; margin: 6px; ">You searched for ' + job + ' jobs in ' + city + '</p>');
+
+                    // loop through data
                     for (var i = 0; i < companies.length; i++) {
                         console.log('-------------------')
-                        var companyName = $('<div data-company="' + companies[i].company + '">' + companies[i].company + '</div>').addClass('job animated slideInUp');
-                        $('#jobs').append(companyName);
-                        var titleName = $('<div data-title="' + companies[i].title + '">' + companies[i].title + '</div>').addClass('job animated slideInUp');
-                        $('#jobs').append(titleName);
-
-                        var descriptionName = $('<div></div>').addClass('job animated slideInUp');
-                        var parsed = $.parseHTML(companies[i].description);
-
-                        descriptionName.append(...parsed);
-                        descriptionName.data('description', companies[i].description);
-                        $('#jobs').append(descriptionName);
+                        // store company name
+                        var companyName = companies[i].company;
+                        // store job title 
+                        var titleName = companies[i].title;
+                        // store job description
+                        var description = companies[i].description;
+                        // store application details
+                        var apply = companies[i].how_to_apply;
+                        // append html
+                        $('#jobs').addClass('animated slideInUp').append('<li><div class="collapsible-header"><i class="material-icons">assignment</i>' + companyName + ' - ' + titleName + '</div><div class="collapsible-body"><span>' + description + '<h5 id="apply-here">Apply Here:</h5>' + apply + '</span></div>');
                     }
 
                 });
-                // then function
+            // then function.
+            // job api.
         }
-        // else if
+        // else if.
     });
-    // on click
+    // on click.
 });
-// document
+// document.

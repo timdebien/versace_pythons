@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
-    
-    <!-- <link rel="icon" href="assets/images/ms-icon-310x310.png" type="image/x-icon"/>
-    <link rel="shortcut icon" href="assets/images/ms-icon-310x310.png" type="image/x-icon"/> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="icon" href="assets/images/dollar-sign.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="assets/images/dollar-sign.png" type="image/x-icon" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>    
     <script type="text/javascript" src="assets/js/app.js"></script>
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <title>Steve's Jobs</title>
+    <title>Job Search App</title>
 </head>
 <!--/-->
 
@@ -89,19 +89,23 @@
         <!-- /.form -->
 
         <div id="print-name"></div>
-        <!-- /.2nd headline -->
+        <!-- /.new headline -->
 
         <div class="row">
-            
-            <div id="gif" class="col s6 m6 l6"></div>
+            <div id="gif" class="col s12 m12 l6"></div>
             <!-- /.steve jobs gif -->
-            
-            <div id="weather" class="col s6 m6 l6"></div>
+
+            <div id="weather" class="col s12 m12 l6"></div>
             <!-- /.weather -->
-        
         </div>
 
-        <div id="jobs"></div>
+        <div id="jobs-title"></div>
+        <!-- /.jobs title -->
+
+        <div>
+            <ul class="collapsible" id="jobs">
+            </ul>
+        </div>
         <!-- /.job list -->
 
     </div>
