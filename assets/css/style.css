@@ -5,15 +5,32 @@ nav {
 #alert {
     color: red
 }
-.job {
-    border: 1px solid grey;
-    padding: 10px;
-    margin: 10px;
+/* jobs */
+#jobs-title {
+    border-radius: 9px;
+    text-align: center;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    margin-top: 12px;
+    margin-bottom: 33px;
 }
 
+.collapsible {
+    border-top: none;
+}
+
+/* weather */
 #weather {
-    border: 1px solid grey;
     border-radius: 6px;
     margin-top: 30px;
     margin-left: -10px;
+}
+#weather h5 {
+    text-align: center;
+}
+#weather h4 {
+    text-decoration: underline;
+}
+#weather h3 {
+    margin-top: 6px;
 }
